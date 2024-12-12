@@ -1,0 +1,57 @@
+name: update log
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '3 6 * * *'
+permissions:
+  actions: none
+  checks: none
+  contents: write
+  deployments: none
+  discussions: none
+  id-token: none
+  issues: none
+  packages: none
+  pages: none
+  pull-requests: write
+  repository-projects: none
+  security-events: none
+  statuses: none
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          submodules: true
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt
+      - name: Update log (keep apks)
+        run: |
+          mkdir apks
+          python3 scripts/update-all-log.py --keep apks -v podman recipes/ch.threema.*.yml
+      - name: Update index
+        run: python3 scripts/make-index.py -v logs/*.json > index.json
+      - name: Upload artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: apks
+          path: |
+            index.json
+            logs/
+            apks/
+      - name: Create pull request (log branch)
+        uses: peter-evans/create-pull-request@v7.0.5
+        with:
+          title: "Update log"
+          commit-message: "Update log"
+          branch-suffix: timestamp
+        if: github.ref == 'refs/heads/log'
