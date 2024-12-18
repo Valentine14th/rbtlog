@@ -211,7 +211,7 @@ def build_with_backend(backend: BuildBackend, appid: str, recipe: BuildRecipe, *
             outputs, scripts = prepare_tmpdir(recipe, tmpdir)
             if recipe.apk_url:
                 signed_sha, vercode, vername = download_apk(
-                    recipe.apk_url, appid, tmpdir, allow_local=bool(apk_url), verbose=verbose)
+                    recipe.apk_url, appid, tmpdir, allow_local=bool(apk_url), verbose=verbose, apk_pattern=recipe.apk_pattern)
                 result.update(version_code=vercode, version_name=vername,
                               upstream_signed_apk_sha256=signed_sha)
             if backend in (BuildBackend.PODMAN, BuildBackend.DOCKER):
@@ -351,13 +351,13 @@ def build_env(recipe: BuildRecipe, commit: str) -> Dict[str, str]:
 
 # FIXME: configure retries
 def download_apk(apk_url: str, appid: str, tmpdir: str, *,
-                 allow_local: bool = False, verbose: bool = False) -> Tuple[str, int, str]:
+                 allow_local: bool = False, verbose: bool = False, apk_pattern: str = None) -> Tuple[str, int, str]:
     """Download APK and get versionCode and versionName."""
     signed_apk = os.path.join(tmpdir, "upstream.apk")
     if verbose:
         print(f"Downloading {apk_url!r}...", file=sys.stderr)
     if is_http_url(apk_url):
-        sha256 = download_file_with_retries(apk_url, signed_apk, retries=5, verbose=verbose)
+        sha256 = download_file_with_retries(apk_url, signed_apk, retries=5, verbose=verbose, apk_pattern=apk_pattern)
     elif allow_local:
         shutil.copyfile(apk_url, signed_apk)
         sha256 = sha256_file(signed_apk)
@@ -495,20 +495,34 @@ def run_command(*args: str, verbose: bool = False) -> str:
 
 
 # FIXME: configure timeout
-def download_file(url: str, output: str) -> str:
+def download_file(url: str, output: str, apk_pattern: str = None) -> str:
     """Download file."""
+    sha = hashlib.sha256()
     with requests.get(url, stream=True, timeout=60) as response:
         response.raise_for_status()
         with open(output, "wb") as fh:
-            sha = hashlib.sha256()
             for chunk in response.iter_content(chunk_size=4096):
                 fh.write(chunk)
                 sha.update(chunk)
-            return sha.hexdigest()
+    # check if zipfile and get the file with correct apk_pattern from it
+    if zipfile.is_zipfile(output):
+        with zipfile.ZipFile(output, "r") as z:
+            apk_name = next((file for file in z.namelist() if re.search(apk_pattern, file)), None)
+            if apk_name:
+                print(f"Found {apk_name} in the archive. Extracting...")
+                with z.open(apk_name) as extracted_file:
+                    with open(output, "wb") as fh:
+                        sha = hashlib.sha256()
+                        for chunk in iter(lambda: extracted_file.read(4096), b""):
+                            fh.write(chunk)
+                            sha.update(chunk)
+            else:
+                print(f"{apk_name} not found in the zip archive. Keeping the original downloaded file.")
+    return sha.hexdigest()
 
 
 def download_file_with_retries(url: str, output: str, *, retries: int = 5,
-                               verbose: bool = False) -> str:
+                               verbose: bool = False, apk_pattern: str = None) -> str:
     """Download file w/ retries."""
     error: Exception = Error("No retries")
     for i in range(retries):
@@ -517,7 +531,7 @@ def download_file_with_retries(url: str, output: str, *, retries: int = 5,
                 print("Retrying...")
             time.sleep(1)
         try:
-            return download_file(url, output)
+            return download_file(url, output, apk_pattern=apk_pattern)
         except requests.RequestException as e:
             error = e
     raise error
