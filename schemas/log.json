@@ -65,7 +65,7 @@
                 "apk_url": {
                   "description": "APK download URL",
                   "type": "string",
-                  "pattern": "^https://.*\\.apk$"
+                  "pattern": "^https://.*\\.(apk|zip)$"
                 },
                 "build": {
                   "description": "build recipe (lines of a bash script)",
