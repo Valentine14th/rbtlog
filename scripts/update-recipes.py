@@ -144,7 +144,7 @@ def latest_tag(repository: str, tag_pattern: str, *, quiet: bool = False,
     raise Error(f"Could not find a tag matching pattern {tag_pattern}")
 
 
-def find_apk_url(recipe: Dict[Any, Any], tag: str) -> str | None :
+def find_apk_url(recipe: Dict[Any, Any], tag: str) -> Optional[str] :
     """Given previous urls, try to find new download links for the APK"""
     
     # get the last url
