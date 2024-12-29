@@ -210,6 +210,7 @@ def build_with_backend(backend: BuildBackend, appid: str, recipe: BuildRecipe, *
         with tempfile.TemporaryDirectory() as tmpdir:
             outputs, scripts = prepare_tmpdir(recipe, tmpdir)
             if recipe.apk_url:
+                print(f"Downloading APK from {recipe.apk_url!r}...", file=sys.stderr)
                 signed_sha, vercode, vername = download_apk(
                     recipe.apk_url, appid, tmpdir, allow_local=bool(apk_url), verbose=verbose, apk_pattern=recipe.apk_pattern)
                 result.update(version_code=vercode, version_name=vername,
