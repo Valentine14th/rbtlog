@@ -141,7 +141,7 @@ def parse_yaml(recipe_file: str) -> AppRecipe:
         for vsn in data["versions"]:
             tag = vsn["tag"]
             for apk in vsn["apks"]:
-                apk_url = url_with_replacements(apk["apk_url"], tag, tag_pattern)
+                apk_url = None if apk["apk_url"] == NOAPK else url_with_replacements(apk["apk_url"], tag, tag_pattern)
                 prov = apk["provisioning"]
                 versions.append(BuildRecipe(
                     repository=data["repository"],
@@ -197,8 +197,8 @@ def build_with_backend(backend: BuildBackend, appid: str, recipe: BuildRecipe, *
         print(f"Warning: build_cpus={recipe.build_cpus} > cpu_count={cpu_count}", file=sys.stderr)
     if commit:
         recipe = dataclasses.replace(recipe, tag=NOTAG)
-    if apk_url:
-        recipe = dataclasses.replace(recipe, apk_url=None if apk_url == NOAPK else apk_url)
+    # if apk_url:
+    #     recipe = dataclasses.replace(recipe, apk_url=None if apk_url == NOAPK else apk_url)
     result: Dict[str, Any] = dict(
         appid=appid, version_code=None, version_name=None, tag=recipe.tag, commit=commit,
         recipe=recipe.for_json(), timestamp=int(time.time()), cpu_count=cpu_count,
