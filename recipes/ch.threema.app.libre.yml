@@ -8,7 +8,7 @@ versions:
   - tag: 5.2.3
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
@@ -35,7 +35,7 @@ versions:
   - tag: 5.2.4
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
@@ -62,7 +62,7 @@ versions:
   - tag: '5.3'
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - rm -fr .git/
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
@@ -90,7 +90,7 @@ versions:
   - tag: 5.3.1
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - rm -fr .git/
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
@@ -118,7 +118,7 @@ versions:
   - tag: 5.3.2
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
@@ -145,7 +145,7 @@ versions:
   - tag: 5.4.1
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
@@ -172,7 +172,7 @@ versions:
   - tag: '5.5'
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
@@ -199,7 +199,7 @@ versions:
   - tag: 5.5.1
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
@@ -226,7 +226,7 @@ versions:
   - tag: 5.6.0
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
@@ -253,7 +253,7 @@ versions:
   - tag: 5.6.1
     apks:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
-        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG:1$$l.apk
+        apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
