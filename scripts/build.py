@@ -460,7 +460,7 @@ def build(backend: str, *specs: str, keep_apks: Optional[str] = None,
             for br in build_recipes:
                 out = build_with_backend(bb, appid, br, commit=commit, apk_url=apk_url,
                                          keep_apks=keep_apks, verbose=verbose)
-                if out.get("error", "").startswith("http error"):
+                if out["error"] and out["error"].startswith("http error"):
                         if verbose:
                              print(f"Error downloading: {out['error']}", file=sys.stderr)
                 elif not out["upstream_signed_apk_sha256"] and apk_url != NOAPK:
