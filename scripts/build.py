@@ -142,6 +142,7 @@ def parse_yaml(recipe_file: str) -> AppRecipe:
             tag = vsn["tag"]
             for apk in vsn["apks"]:
                 apk_url = None if apk["apk_url"] == NOAPK else url_with_replacements(apk["apk_url"], tag, tag_pattern)
+                print(f"apk_url in parse yaml, ie. in recipe: {apk_url}", file=sys.stderr)
                 prov = apk["provisioning"]
                 versions.append(BuildRecipe(
                     repository=data["repository"],
@@ -463,9 +464,12 @@ def build(backend: str, *specs: str, keep_apks: Optional[str] = None,
                                          keep_apks=keep_apks, verbose=verbose)
                 outputs.append(out)
                 if not out["upstream_signed_apk_sha256"] and apk_url != NOAPK:
-                    errors += 1
-                    if not verbose:     # already printed otherwise
-                        print(f"Error building {spec!r}: {out['error']}", file=sys.stderr)
+                    if out.get("error", "").startswith("http error") and verbose:
+                            print(f"Error downloading {apk_url!r}: {out['error']}", file=sys.stderr)
+                    else:
+                        errors += 1
+                        if not verbose:     # already printed otherwise
+                            print(f"Error building {spec!r}: {out['error']}", file=sys.stderr)
         else:
             errors += 1
             print(f"Error building {appid!r}: tag not found: {tag!r}", file=sys.stderr)
