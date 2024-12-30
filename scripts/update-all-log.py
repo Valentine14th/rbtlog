@@ -93,6 +93,7 @@ def update_log(backend: str, *recipes: str, batch: Optional[int] = None,
         keep = ("--keep-apks", keep_apks) if keep_apks else ()
         args = (EXE, os.path.join("scripts", "build.py"), *verb, *keep, "--", backend, *to_build)
         output = subprocess.run(args, check=True, stdout=subprocess.PIPE).stdout.decode()
+        print(f"Outputs of build.py: {output}", file=sys.stderr)
         builds = json.loads(output)
         save_log(log_file, add_builds(load_log(log_file, appid), builds))
     if verbose:
