@@ -210,7 +210,6 @@ def build_with_backend(backend: BuildBackend, appid: str, recipe: BuildRecipe, *
         with tempfile.TemporaryDirectory() as tmpdir:
             outputs, scripts = prepare_tmpdir(recipe, tmpdir)
             if recipe.apk_url:
-                print(f"Downloading APK from {recipe.apk_url!r}...", file=sys.stderr)
                 signed_sha, vercode, vername = download_apk(
                     recipe.apk_url, appid, tmpdir, allow_local=bool(apk_url), verbose=verbose, apk_pattern=recipe.apk_pattern)
                 result.update(version_code=vercode, version_name=vername,
@@ -461,11 +460,15 @@ def build(backend: str, *specs: str, keep_apks: Optional[str] = None,
             for br in build_recipes:
                 out = build_with_backend(bb, appid, br, commit=commit, apk_url=apk_url,
                                          keep_apks=keep_apks, verbose=verbose)
-                outputs.append(out)
-                if not out["upstream_signed_apk_sha256"] and apk_url != NOAPK:
-                    errors += 1
-                    if not verbose:     # already printed otherwise
-                        print(f"Error building {spec!r}: {out['error']}", file=sys.stderr)
+                if out["error"] and out["error"].startswith("http error"):
+                        if verbose:
+                             print(f"Error downloading: {out['error']}", file=sys.stderr)
+                elif not out["upstream_signed_apk_sha256"] and apk_url != NOAPK:
+                        errors += 1
+                        if not verbose:     # already printed otherwise
+                            print(f"Error building {spec!r}: {out['error']}", file=sys.stderr)
+                else:
+                    outputs.append(out)           
         else:
             errors += 1
             print(f"Error building {appid!r}: tag not found: {tag!r}", file=sys.stderr)
@@ -510,7 +513,7 @@ def download_file(url: str, output: str, apk_pattern: str = None) -> str:
         with zipfile.ZipFile(output, "r") as z:
             apk_name = next((file for file in z.namelist() if re.search(apk_pattern, file)), None)
             if apk_name:
-                print(f"Found {apk_name} in the archive. Extracting...")
+                print(f"Found {apk_name} in the archive. Extracting...", file=sys.stderr)
                 with z.open(apk_name) as extracted_file:
                     with open(output, "wb") as fh:
                         sha = hashlib.sha256()
@@ -518,7 +521,7 @@ def download_file(url: str, output: str, apk_pattern: str = None) -> str:
                             fh.write(chunk)
                             sha.update(chunk)
             else:
-                print(f"{apk_name} not found in the zip archive. Keeping the original downloaded file.")
+                print(f"{apk_name} not found in the zip archive. Keeping the original downloaded file.", file=sys.stderr)
     return sha.hexdigest()
 
 
@@ -529,7 +532,7 @@ def download_file_with_retries(url: str, output: str, *, retries: int = 5,
     for i in range(retries):
         if i:
             if verbose:
-                print("Retrying...")
+                print("Retrying...", file=sys.stderr)
             time.sleep(1)
         try:
             return download_file(url, output, apk_pattern=apk_pattern)
