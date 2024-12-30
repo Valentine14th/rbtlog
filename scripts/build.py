@@ -142,7 +142,6 @@ def parse_yaml(recipe_file: str) -> AppRecipe:
             tag = vsn["tag"]
             for apk in vsn["apks"]:
                 apk_url = None if apk["apk_url"] == NOAPK else url_with_replacements(apk["apk_url"], tag, tag_pattern)
-                print(f"apk_url in parse yaml, ie. in recipe: {apk_url}", file=sys.stderr)
                 prov = apk["provisioning"]
                 versions.append(BuildRecipe(
                     repository=data["repository"],
@@ -211,7 +210,6 @@ def build_with_backend(backend: BuildBackend, appid: str, recipe: BuildRecipe, *
         with tempfile.TemporaryDirectory() as tmpdir:
             outputs, scripts = prepare_tmpdir(recipe, tmpdir)
             if recipe.apk_url:
-                print(f"Downloading APK from {recipe.apk_url!r}...", file=sys.stderr)
                 signed_sha, vercode, vername = download_apk(
                     recipe.apk_url, appid, tmpdir, allow_local=bool(apk_url), verbose=verbose, apk_pattern=recipe.apk_pattern)
                 result.update(version_code=vercode, version_name=vername,
@@ -463,8 +461,9 @@ def build(backend: str, *specs: str, keep_apks: Optional[str] = None,
                 out = build_with_backend(bb, appid, br, commit=commit, apk_url=apk_url,
                                          keep_apks=keep_apks, verbose=verbose)
                 if not out["upstream_signed_apk_sha256"] and apk_url != NOAPK:
-                    if out.get("error", "").startswith("http error") and verbose:
-                            print(f"Error downloading {apk_url!r}: {out['error']}", file=sys.stderr)
+                    if out.get("error", "").startswith("http error"):
+                            if verbose:
+                                print(f"Error downloading: {out['error']}", file=sys.stderr)
                     else:
                         errors += 1
                         if not verbose:     # already printed otherwise
