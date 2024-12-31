@@ -502,27 +502,32 @@ def run_command(*args: str, verbose: bool = False) -> str:
 # FIXME: configure timeout
 def download_file(url: str, output: str, apk_pattern: str = None) -> str:
     """Download file."""
+    
     sha = hashlib.sha256()
-    with requests.get(url, stream=True, timeout=60) as response:
-        response.raise_for_status()
-        with open(output, "wb") as fh:
-            for chunk in response.iter_content(chunk_size=4096):
-                fh.write(chunk)
-                sha.update(chunk)
-    # check if zipfile and get the file with correct apk_pattern from it
-    if zipfile.is_zipfile(output):
-        with zipfile.ZipFile(output, "r") as z:
-            apk_name = next((file for file in z.namelist() if re.search(apk_pattern, file)), None)
-            if apk_name:
-                print(f"Found {apk_name} in the archive. Extracting...", file=sys.stderr)
-                with z.open(apk_name) as extracted_file:
-                    with open(output, "wb") as fh:
-                        sha = hashlib.sha256()
-                        for chunk in iter(lambda: extracted_file.read(4096), b""):
-                            fh.write(chunk)
-                            sha.update(chunk)
-            else:
-                print(f"{apk_name} not found in the zip archive. Keeping the original downloaded file.", file=sys.stderr)
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_file_path = os.path.join(temp_dir, os.path.basename(url))
+        with requests.get(url, stream=True, timeout=60) as response:
+            response.raise_for_status()
+            with open(temp_file_path, "wb") as fh:
+                for chunk in response.iter_content(chunk_size=4096):
+                    fh.write(chunk)
+                    sha.update(chunk)
+        # check if zipfile and get the file with correct apk_pattern from it
+        if zipfile.is_zipfile(temp_file_path):
+            with zipfile.ZipFile(temp_file_path, "r") as z:
+                apk_name = next((file for file in z.namelist() if re.search(apk_pattern, file)), None)
+                if apk_name:
+                    print(f"Found {apk_name} in the archive. Extracting...", file=sys.stderr)
+                    with z.open(apk_name) as extracted_file:
+                        with open(output, "wb") as fh:
+                            sha = hashlib.sha256()
+                            while chunk := extracted_file.read(4096): 
+                                fh.write(chunk)
+                                sha.update(chunk)
+                else:
+                    print(f"{apk_name} not found in the zip archive. Keeping the original downloaded file.", file=sys.stderr)
+        else:
+            shutil.copy(temp_file_path, output)
     return sha.hexdigest()
 
 
