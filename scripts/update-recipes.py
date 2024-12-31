@@ -18,6 +18,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import requests
 
 from ruamel.yaml import YAML
+from scripts.build import url_with_replacements
 
 EXE = sys.executable or "python3"
 
@@ -151,28 +152,29 @@ def find_apk_url(recipe: Dict[Any, Any], tag: str) -> Optional[str] :
     last_version = recipe["versions"][-1]
     
     # if there is a TAG value, replace it with the current tag
-    for test_tag in [tag.replace(".", "_"), tag]:
-        last_url = last_version["apks"]["apk_url"]
-        last_url = last_url.replace("$$TAG$$", test_tag)
-        if check_url(last_url):
-            return last_url
-        
-        # if there is a date, try all dates from the last date to the current date
-        date_pattern = r'\d{4}_\d{2}_\d{2}'
-        match = re.search(date_pattern, last_url)
+    last_url = last_version["apks"]["apk_url"]
+    tag_pattern = recipe["updates"].split("tags:", 1)[1] if recipe["updates"].contains("tags:") else None
+    last_url_with_replacements = url_with_replacements(last_url, tag, tag_pattern)
+    if check_url(last_url_with_replacements):
+        return last_url
+    
+    # if there is a date, try all dates from the last date to the current date
+    date_pattern = r'\d{4}_\d{2}_\d{2}'
+    test_match = re.search(date_pattern, last_url_with_replacements)
 
-        if match:
-            start_date_str = match.group()
-            
-            start_date = datetime.strptime(start_date_str, '%Y_%m_%d')
-            current_date = datetime.now() + timedelta(days=1) # one more day for safety
-            current = start_date
-            
-            while current <= current_date:
-                updated_string = last_url.replace(start_date_str, current.strftime('%Y_%m_%d'))
-                if check_url(updated_string):
-                    return updated_string
-                current += timedelta(days=1)
+    if test_match:
+        date_group_test = test_match.group()
+        
+        start_date = datetime.strptime(date_group_test, '%Y_%m_%d')
+        current_date = datetime.now() + timedelta(days=1) # one more day for safety
+        current_test = start_date
+        
+        while current_test <= current_date:
+            date_url_test = last_url_with_replacements.replace(date_group_test, current_test.strftime('%Y_%m_%d'))
+            if check_url(date_url_test):
+                match = re.search(date_pattern, last_url)
+                return last_url.replace(match.group(), current_test.strftime('%Y_%m_%d'))
+            current_test += timedelta(days=1)
             
     return None
 
