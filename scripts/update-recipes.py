@@ -302,8 +302,10 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
             else:
                 raise NotImplementedError(f"Unsupported updates mode: {updates}")
             if append_latest_version(recipe, tag, apk_urls):
-                if checkonly or apk_urls is None:
+                if checkonly:
                     print(f"Update available for {appid!r}: {tag!r}.", file=sys.stderr)
+                elif apk_urls is None:
+                    print(f"Could not find APK URLs for {appid!r}: {tag!r}.", file=sys.stderr)
                 else:
                     save_recipe(recipe_file, recipe)
                     print(f"Updated {appid!r} to {tag!r}.", file=sys.stderr)
