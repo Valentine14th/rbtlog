@@ -525,7 +525,7 @@ def download_file(url: str, output: str, apk_pattern: str = None) -> str:
                                 fh.write(chunk)
                                 sha.update(chunk)
                 else:
-                    print(f"{apk_name} not found in the zip archive. Keeping the original downloaded file.", file=sys.stderr)
+                    print(f"{apk_name} not found in the zip archive. Keeping the originally downloaded file.", file=sys.stderr)
         else:
             shutil.copy(temp_file_path, output)
     return sha.hexdigest()
