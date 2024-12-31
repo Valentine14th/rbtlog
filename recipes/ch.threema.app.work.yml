@@ -9,7 +9,7 @@ versions:
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleStore_google_workRelease
-          - mv app/build/outputs/apk/work/release/app-store_google_work-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
+          - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
