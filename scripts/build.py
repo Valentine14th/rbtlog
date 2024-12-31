@@ -179,8 +179,9 @@ def parse_yaml(recipe_file: str) -> AppRecipe:
 
 
 def url_with_replacements(apk_url: str, tag: str, tag_pattern: Optional[str]) -> str:
-    """URL with $$TAG$$ $$TAG:1$$ etc. replaced."""
+    """URL with $$TAG$$ $$TAG:1$$, $$TAG:_$$ etc. replaced."""
     url = apk_url.replace("$$TAG$$", tag)
+    url = url.replace("$$TAG:_$$", tag.replace(".", "_"))
     if tag_pattern and (m := re.fullmatch(tag_pattern, tag)):
         for i, group in enumerate(m.groups("")):
             url = url.replace(f"$$TAG:{i + 1}$$", group)
