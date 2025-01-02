@@ -9,12 +9,7 @@ versions:
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleStore_google_workRelease
-          - ls -p app/build/
-          - ls -p app/build/outputs/
-          - ls -p app/build/outputs/apk/
-          - ls -p app/build/outputs/apk/store_google_work/
-          - ls -p app/build/outputs/apk/store_google_work/release/
-          - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-arm64-v8a-release-unsigned.apk /outputs/unsigned.apk
+          - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-release-unsigned.apk /outputs/unsigned.apk
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
