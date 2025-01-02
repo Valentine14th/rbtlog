@@ -22,6 +22,7 @@ def process_log(log_file: str, data: Dict[Any, Any]) -> None:
     """Process JSON log file; modifies data in-place!"""
     for tag, logs in load_log(log_file)["tags"].items():
         for log in logs:
+            print("log printed:", log)
             sha256 = log["upstream_signed_apk_sha256"]
             if sha256 is None:
                 continue
