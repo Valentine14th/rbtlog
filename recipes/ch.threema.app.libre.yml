@@ -10,7 +10,7 @@ versions:
       - apk_pattern: ch\.threema\.app\.libre-([\d.]+)l\.apk
         apk_url: https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-$$TAG$$l.apk
         build:
-          #- sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
+          - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew assembleLibreRelease
           - mv app/build/outputs/apk/libre/release/app-libre-release-unsigned.apk /outputs/unsigned.apk
         build_home_dir: /build
