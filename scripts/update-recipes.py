@@ -153,7 +153,7 @@ def find_apk_url(recipe: Dict[Any, Any], tag: str) -> Optional[str] :
     
     # if there is a TAG value, replace it with the current tag
     last_url = last_version["apks"][0]["apk_url"]
-    tag_pattern = recipe["updates"].split("tags:", 1)[1] if recipe["updates"].contains("tags:") else None
+    tag_pattern = recipe["updates"].split("tags:", 1)[1] if "tags:" in recipe["updates"] else None
     last_url_with_replacements = url_with_replacements(last_url, tag, tag_pattern)
     if check_url(last_url_with_replacements):
         return last_url
