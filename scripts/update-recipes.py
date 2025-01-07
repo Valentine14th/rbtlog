@@ -18,7 +18,6 @@ from typing import Any, Dict, List, Optional, Tuple
 import requests
 
 from ruamel.yaml import YAML
-from scripts.build import url_with_replacements
 
 EXE = sys.executable or "python3"
 
@@ -186,8 +185,15 @@ def check_url(url: str) -> bool:
         return response.status_code != 404 
     except requests.RequestException as e:
         return False
-    
-    
+ 
+def url_with_replacements(apk_url: str, tag: str, tag_pattern: Optional[str]) -> str:
+    """URL with $$TAG$$ $$TAG:1$$, $$TAG:_$$ etc. replaced."""
+    url = apk_url.replace("$$TAG$$", tag)
+    url = url.replace("$$TAG:_$$", tag.replace(".", "_"))
+    if tag_pattern and (m := re.fullmatch(tag_pattern, tag)):
+        for i, group in enumerate(m.groups("")):
+            url = url.replace(f"$$TAG:{i + 1}$$", group)
+    return url     
 
 
 # FIXME: retry, configure timeout, gitea vs forgejo
@@ -296,7 +302,10 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
                 tag_pattern = updates.replace("tags:", "", 1)
                 tag = latest_tag(repository, tag_pattern, quiet=quiet, verbose=verbose)
                 found_url = find_apk_url(recipe, tag)
-                apk_urls = {apk_patterns[0] : found_url} if found_url else None
+                apk_urls = {} if found_url else None
+                if apk_urls:
+                    for apk_pattern in apk_patterns:
+                        apk_urls[apk_pattern] = found_url
                 if verbose:
                     print(f"Found tag {tag!r}.", file=sys.stderr)
             else:
