@@ -94,6 +94,8 @@ def update_log(backend: str, *recipes: str, batch: Optional[int] = None,
         args = (EXE, os.path.join("scripts", "build.py"), *verb, *keep, "--", backend, *to_build)
         output = subprocess.run(args, check=True, stdout=subprocess.PIPE).stdout.decode()
         builds = json.loads(output)
+        print("builds", file=sys.stderr)
+        print(builds, file=sys.stderr)
         save_log(log_file, add_builds(load_log(log_file, appid), builds))
     if verbose:
         info = f" (batch of {batch})" if batch else ""
