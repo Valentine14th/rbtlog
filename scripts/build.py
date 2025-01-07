@@ -469,7 +469,6 @@ def build(backend: str, *specs: str, keep_apks: Optional[str] = None,
                         if not verbose:     # already printed otherwise
                             print(f"Error building {spec!r}: {out['error']}", file=sys.stderr)
                 else:
-                    print(f"Built {spec!r}: {out['version_code']} {out['version_name']}", file=sys.stderr)
                     outputs.append(out)           
         else:
             errors += 1
@@ -526,7 +525,7 @@ def download_file(url: str, output: str, apk_pattern: str = None) -> str:
                                 fh.write(chunk)
                                 sha.update(chunk)
                 else:
-                    print(f"{apk_name} not found in the zip archive. Keeping the original downloaded file.", file=sys.stderr)
+                    print(f"{apk_name} not found in the zip archive. Keeping the originally downloaded file.", file=sys.stderr)
         else:
             shutil.copy(temp_file_path, output)
     return sha.hexdigest()
