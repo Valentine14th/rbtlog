@@ -783,6 +783,20 @@
       "error": null
     }
   ],
+  "fa7aab6bb8a50e4692e23b0ee3859c7a6a7100690127bcb257d63e9fbea0888d": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-work-5_6_1k-2024_11_25.zip",
+      "appid": "ch.threema.app.work",
+      "version_code": 3001013,
+      "version_name": "5.6.1k",
+      "tag": "5.6.1",
+      "commit": "d343b79dbfa84df8d709e5c8d84f3c78de4097a0",
+      "timestamp": 1736271974,
+      "reproducible": false,
+      "error": null
+    }
+  ],
   "aa8512fc3e02f0585dc435628e3d5fdc7af306adae4130155c801fcba4f07639": [
     {
       "repository": "https://github.com/TeamAmaze/AmazeFileManager.git",
