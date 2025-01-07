@@ -4,9 +4,34 @@ updates: tags:([\d.]+)
 versions:
   - tag: 5.6.1
     apks:
-      - apk_pattern: work-armeabi-v7a-release.apk
+      - apk_pattern: work-arm64-v8a-release.apk
         apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_11_25.zip
         build:
+          - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
+          - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
+          - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-arm64-v8a-release-unsigned.apk /outputs/unsigned.apk
+        build_home_dir: /build
+        build_repo_dir: /build/repo
+        build_user: build
+        provisioning:
+          android_home: /opt/sdk
+          build_tools:
+          cmake:
+          cmdline_tools:
+            version: '12.0'
+            url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+            sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
+          extra_packages: []
+          image: debian:bookworm-slim
+          jdk: openjdk-17-jdk-headless
+          ndk:
+          platform:
+          platform_tools:
+          tools:
+          verify_gradle_wrapper: true
+      - apk_pattern: work-armeabi-v7a-release.apk
+        apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_11_25.zip
+        build: 
           - sed -r '/abi \{/,/}/ s/include .*/include \x27armeabi-v7a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
@@ -29,4 +54,78 @@ versions:
           platform_tools:
           tools:
           verify_gradle_wrapper: true
-
+      - apk_pattern: work-x86-release.apk
+        apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_11_25.zip
+        build: 
+          - sed -r '/abi \{/,/}/ s/include .*/include \x27x86\x27/' -i app/build.gradle
+          - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
+          - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-x86-release-unsigned.apk /outputs/unsigned.apk
+        build_home_dir: /build
+        build_repo_dir: /build/repo
+        build_user: build
+        provisioning:
+          android_home: /opt/sdk
+          build_tools:
+          cmake:
+          cmdline_tools:
+            version: '12.0'
+            url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+            sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
+          extra_packages: []
+          image: debian:bookworm-slim
+          jdk: openjdk-17-jdk-headless
+          ndk:
+          platform:
+          platform_tools:
+          tools:
+          verify_gradle_wrapper: true
+      - apk_pattern: work-x86_64-release.apk
+        apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_11_25.zip
+        build: 
+          - sed -r '/abi \{/,/}/ s/include .*/include \x27x86_64\x27/' -i app/build.gradle
+          - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
+          - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-x86_64-release-unsigned.apk /outputs/unsigned.apk
+        build_home_dir: /build
+        build_repo_dir: /build/repo
+        build_user: build
+        provisioning:
+          android_home: /opt/sdk
+          build_tools:
+          cmake:
+          cmdline_tools:
+            version: '12.0'
+            url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+            sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
+          extra_packages: []
+          image: debian:bookworm-slim
+          jdk: openjdk-17-jdk-headless
+          ndk:
+          platform:
+          platform_tools:
+          tools:
+          verify_gradle_wrapper: true
+      - apk_pattern: work-universal-release.apk
+        apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_11_25.zip
+        build: 
+          - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
+          - ./gradlew clean assembleStore_google_workRelease
+          - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-release-unsigned.apk /outputs/unsigned.apk
+        build_home_dir: /build
+        build_repo_dir: /build/repo
+        build_user: build
+        provisioning:
+          android_home: /opt/sdk
+          build_tools:
+          cmake:
+          cmdline_tools:
+            version: '12.0'
+            url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+            sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
+          extra_packages: []
+          image: debian:bookworm-slim
+          jdk: openjdk-17-jdk-headless
+          ndk:
+          platform:
+          platform_tools:
+          tools:
+          verify_gradle_wrapper: true
