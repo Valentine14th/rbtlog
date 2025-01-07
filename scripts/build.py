@@ -469,6 +469,7 @@ def build(backend: str, *specs: str, keep_apks: Optional[str] = None,
                         if not verbose:     # already printed otherwise
                             print(f"Error building {spec!r}: {out['error']}", file=sys.stderr)
                 else:
+                    print(f"Built {spec!r}: {out['version_code']} {out['version_name']}", file=sys.stderr)
                     outputs.append(out)           
         else:
             errors += 1
