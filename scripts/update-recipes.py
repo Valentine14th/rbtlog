@@ -149,6 +149,8 @@ def find_apk_url(recipe: Dict[Any, Any], tag: str) -> Optional[str] :
     
     # get the last url
     last_version = recipe["versions"][-1]
+    print("last version", file=sys.stderr)
+    print(last_version, file=sys.stderr)
     
     # if there is a TAG value, replace it with the current tag
     last_url = last_version["apks"]["apk_url"]
