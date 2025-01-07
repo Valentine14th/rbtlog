@@ -145,16 +145,15 @@ def latest_tag(repository: str, tag_pattern: str, *, quiet: bool = False,
 
 
 def find_apk_url(recipe: Dict[Any, Any], tag: str) -> Optional[str] :
-    """Given previous urls, try to find new download links for the APK"""
+    """Given previous urls, try to find new download links for the APK.
+    Assumes (for now) the apk_url is the same for all apks for a single version"""
     
     # get the last url
     last_version = recipe["versions"][-1]
-    print("last version", file=sys.stderr)
-    print(last_version, file=sys.stderr)
     
     # if there is a TAG value, replace it with the current tag
-    last_url = last_version["apks"]["apk_url"]
-    tag_pattern = recipe["updates"].split("tags:", 1)[1] if recipe["updates"].contains("tags:") else None
+    last_url = last_version["apks"][0]["apk_url"]
+    tag_pattern = recipe["updates"].split("tags:", 1)[1] if "tags:" in recipe["updates"] else None
     last_url_with_replacements = url_with_replacements(last_url, tag, tag_pattern)
     if check_url(last_url_with_replacements):
         return last_url
