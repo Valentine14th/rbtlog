@@ -1,8 +1,8 @@
-name: update recipes
+name: update log
 on:
   workflow_dispatch:
   schedule:
-    - cron: '3 0 * * *'
+    - cron: '3 6 * * *'
 permissions:
   actions: none
   checks: none
@@ -34,13 +34,24 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
-      - name: Update recipes
-        run: python3 scripts/update-recipes.py -v --continue-on-errors --update-hashes recipes/ch.threema.app.work.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create pull request
+      - name: Update log (keep apks)
+        run: |
+          mkdir apks
+          python3 scripts/update-log.py --keep apks -v podman recipes/ch.threema.app.*.yml
+      - name: Update index
+        run: python3 scripts/make-index.py -v logs/*.json > index.json
+      - name: Upload artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: apks
+          path: |
+            index.json
+            logs/
+            apks/
+      - name: Create pull request (log branch)
         uses: peter-evans/create-pull-request@v7.0.5
         with:
-          title: "Update recipes"
-          commit-message: "Update recipes"
+          title: "Update log"
+          commit-message: "Update log"
           branch-suffix: timestamp
+        if: github.ref == 'refs/heads/log'
