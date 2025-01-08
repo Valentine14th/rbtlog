@@ -1,4 +1,4 @@
-name: update log
+name: update log threema
 on:
   workflow_dispatch:
   schedule:
