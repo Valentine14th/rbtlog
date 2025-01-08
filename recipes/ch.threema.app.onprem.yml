@@ -383,7 +383,7 @@ versions:
           platform_tools:
           tools:
           verify_gradle_wrapper: true
-  - tag: 5.5
+  - tag: '5.5'
     apks:
       - apk_pattern: onprem-arm64-v8a-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_08_28.zip
