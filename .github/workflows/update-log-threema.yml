@@ -37,7 +37,7 @@ jobs:
       - name: Update log (keep apks)
         run: |
           mkdir apks
-          python3 scripts/update-log.py --keep apks -v podman recipes/ch.threema.app.work.yml
+          python3 scripts/update-log.py --keep apks -v podman recipes/ch.threema.app.*.yml
       - name: Update index
         run: python3 scripts/make-index.py -v logs/*.json > index.json
       - name: Upload artefacts
