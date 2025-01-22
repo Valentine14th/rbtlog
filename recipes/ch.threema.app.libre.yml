@@ -1,9 +1,6 @@
 ---
 repository: https://github.com/threema-ch/threema-android.git
-updates: checkonly:tags:([\d.]+)
-notes:
-  - 'FIXME: no APK for 5.6.2'
-  - 'FIXME: JARs & AARs'
+updates: tags:([\d.]+)
 versions:
   - tag: 5.2.3
     apks:
