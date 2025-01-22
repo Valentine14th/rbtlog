@@ -513,7 +513,7 @@ def download_file(url: str, output: str, apk_pattern: str = None) -> str:
                     fh.write(chunk)
                     sha.update(chunk)
         # check if zipfile and get the file with correct apk_pattern from it
-        if zipfile.is_zipfile(temp_file_path):
+        if url.endswith(".zip"):
             with zipfile.ZipFile(temp_file_path, "r") as z:
                 apk_name = next((file for file in z.namelist() if re.search(apk_pattern, file)), None)
                 if apk_name:
