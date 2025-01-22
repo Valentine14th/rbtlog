@@ -109,12 +109,13 @@ def retrieve_apk_hashes(apk_url: str, files: List[str]) -> Tuple[Dict[str, str],
 
 
 def url_with_replacements(apk_url: str, tag: str, tag_pattern: Optional[str]) -> str:
-    """URL with $$TAG$$ $$TAG:1$$ etc. replaced."""
+    """URL with $$TAG$$ $$TAG:1$$, $$TAG:_$$ etc. replaced."""
     url = apk_url.replace("$$TAG$$", tag)
+    url = url.replace("$$TAG:_$$", tag.replace(".", "_"))
     if tag_pattern and (m := re.fullmatch(tag_pattern, tag)):
         for i, group in enumerate(m.groups("")):
             url = url.replace(f"$$TAG:{i + 1}$$", group)
-    return url
+    return url  
 
 
 def tag_to_commit(repository: str, tag: str) -> str:
