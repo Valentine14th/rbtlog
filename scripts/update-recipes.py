@@ -304,6 +304,8 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
             elif updates.startswith("tags:"):
                 tag_pattern = updates.replace("tags:", "", 1)
                 tag = latest_tag(repository, tag_pattern, quiet=quiet, verbose=verbose)
+                # for debug purposes
+                tag = "5.7.0"
                 found_url = find_apk_url(recipe, tag)
                 apk_urls = {} if found_url else None
                 if apk_urls:
