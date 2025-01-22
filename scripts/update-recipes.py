@@ -307,6 +307,8 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
                 if apk_urls:
                     for apk_pattern in apk_patterns:
                         apk_urls[apk_pattern] = found_url
+                    if verbose:
+                        print(f"Found tag {tag!r} with APK URL {found_url!r}.", file=sys.stderr)
                 if verbose:
                     print(f"Found tag {tag!r}.", file=sys.stderr)
             else:
