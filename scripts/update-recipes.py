@@ -308,7 +308,7 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
                 tag = "5.7.0"
                 found_url = find_apk_url(recipe, tag)
                 apk_urls = {} if found_url else None
-                if apk_urls:
+                if apk_urls != None:
                     for apk_pattern in apk_patterns:
                         apk_urls[apk_pattern] = found_url
                     if verbose:
