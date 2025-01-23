@@ -132,7 +132,7 @@ versions:
   - tag: 5.3.1
     apks:
       - apk_pattern: onprem-arm64-v8a-release.apk
-        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_05_24.zip
+        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
@@ -157,7 +157,7 @@ versions:
           tools:
           verify_gradle_wrapper: true
       - apk_pattern: onprem-armeabi-v7a-release.apk
-        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_05_24.zip
+        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27armeabi-v7a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
@@ -182,7 +182,7 @@ versions:
           tools:
           verify_gradle_wrapper: true
       - apk_pattern: onprem-x86-release.apk
-        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_05_24.zip
+        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
@@ -207,7 +207,7 @@ versions:
           tools:
           verify_gradle_wrapper: true
       - apk_pattern: onprem-x86_64-release.apk
-        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_05_24.zip
+        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86_64\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
@@ -232,7 +232,7 @@ versions:
           tools:
           verify_gradle_wrapper: true
       - apk_pattern: onprem-universal-release.apk
-        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_05_24.zip
+        apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew clean assembleOnpremRelease
