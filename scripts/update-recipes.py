@@ -296,16 +296,12 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
             apk_patterns = [apk["apk_pattern"] for apk in recipe["versions"][-1]["apks"]]
             if updates == "releases":
                 tag, apk_urls = latest_release(repository, apk_patterns, verbose=verbose)
-                # for debug purposes
-                tag = "5.7.0"
                 if verbose:
                     for apk_url in apk_urls.values():
                         print(f"Found tag {tag!r} with APK URL {apk_url!r}.", file=sys.stderr)
             elif updates.startswith("tags:"):
                 tag_pattern = updates.replace("tags:", "", 1)
                 tag = latest_tag(repository, tag_pattern, quiet=quiet, verbose=verbose)
-                # for debug purposes
-                tag = "5.7.0"
                 found_url = find_apk_url(recipe, tag)
                 apk_urls = {} if found_url else None
                 if apk_urls != None:
