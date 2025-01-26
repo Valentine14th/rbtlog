@@ -134,6 +134,7 @@ versions:
       - apk_pattern: onprem-arm64-v8a-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
+          - rm -fr .git/
           - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-arm64-v8a-release-unsigned.apk /outputs/unsigned.apk
@@ -159,6 +160,7 @@ versions:
       - apk_pattern: onprem-armeabi-v7a-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
+          - rm -fr .git/
           - sed -r '/abi \{/,/}/ s/include .*/include \x27armeabi-v7a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
@@ -184,6 +186,7 @@ versions:
       - apk_pattern: onprem-x86-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
+          - rm -fr .git/
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-x86-release-unsigned.apk /outputs/unsigned.apk
@@ -209,6 +212,7 @@ versions:
       - apk_pattern: onprem-x86_64-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
+          - rm -fr .git/
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86_64\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-x86_64-release-unsigned.apk /outputs/unsigned.apk
@@ -234,6 +238,7 @@ versions:
       - apk_pattern: onprem-universal-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2024_06_06.zip
         build:
+          - rm -fr .git/
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew clean assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk

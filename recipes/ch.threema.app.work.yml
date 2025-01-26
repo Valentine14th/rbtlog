@@ -134,6 +134,7 @@ versions:
       - apk_pattern: work-arm64-v8a-release.apk
         apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_05_24.zip
         build:
+          - rm -fr .git/
           - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-arm64-v8a-release-unsigned.apk /outputs/unsigned.apk
@@ -160,6 +161,7 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_05_24.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27armeabi-v7a\x27/' -i app/build.gradle
+          - rm -fr .git/
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
         build_home_dir: /build
@@ -185,6 +187,7 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_05_24.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86\x27/' -i app/build.gradle
+          - rm -fr .git/
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-x86-release-unsigned.apk /outputs/unsigned.apk
         build_home_dir: /build
@@ -210,6 +213,7 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_05_24.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86_64\x27/' -i app/build.gradle
+          - rm -fr .git/
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-x86_64-release-unsigned.apk /outputs/unsigned.apk
         build_home_dir: /build
@@ -235,6 +239,7 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2024_05_24.zip
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
+          - rm -fr .git/
           - ./gradlew clean assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-release-unsigned.apk /outputs/unsigned.apk
         build_home_dir: /build
