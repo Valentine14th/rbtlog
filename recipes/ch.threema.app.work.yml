@@ -650,6 +650,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
           - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
+          - export PATH="$CARGO_HOME/bin:$PATH"
           - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
           - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
@@ -684,6 +685,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27armeabi-v7a\x27/' -i app/build.gradle
           - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
+          - export PATH="$CARGO_HOME/bin:$PATH"
           - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
           - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
@@ -718,6 +720,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86\x27/' -i app/build.gradle
           - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
+          - export PATH="$CARGO_HOME/bin:$PATH"
           - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
           - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
@@ -752,6 +755,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86_64\x27/' -i app/build.gradle
           - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
+          - export PATH="$CARGO_HOME/bin:$PATH"
           - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
           - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
@@ -786,6 +790,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
+          - export PATH="$CARGO_HOME/bin:$PATH"
           - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
           - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean assembleStore_google_workRelease
