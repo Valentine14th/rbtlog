@@ -138,6 +138,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-arm64-v8a-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -164,6 +165,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27armeabi-v7a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -190,6 +192,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-x86-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -216,6 +219,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86_64\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-x86_64-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -242,6 +246,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
           - ./gradlew clean assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build

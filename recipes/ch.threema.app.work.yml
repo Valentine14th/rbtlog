@@ -138,6 +138,7 @@ versions:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-arm64-v8a-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -164,6 +165,7 @@ versions:
           - rm -fr .git/
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -190,6 +192,7 @@ versions:
           - rm -fr .git/
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-x86-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -216,6 +219,7 @@ versions:
           - rm -fr .git/
           - ./gradlew clean -PbuildUniversalApk assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-x86_64-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -242,6 +246,7 @@ versions:
           - rm -fr .git/
           - ./gradlew clean assembleStore_google_workRelease
           - mv app/build/outputs/apk/store_google_work/release/app-store_google_work-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs: []
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
