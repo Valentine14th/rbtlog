@@ -144,7 +144,8 @@ def parse_yaml(recipe_file: str) -> AppRecipe:
             for apk in vsn["apks"]:
                 apk_url = None if apk["apk_url"] == NOAPK else url_with_replacements(apk["apk_url"], tag, tag_pattern)
                 prov = apk["provisioning"]
-                print((line for line in apk["build"]), file=sys.stderr)
+                debug = [line for line in apk["build"]]
+                print(debug, file=sys.stderr)
                 versions.append(BuildRecipe(
                     repository=data["repository"],
                     tag=tag,
