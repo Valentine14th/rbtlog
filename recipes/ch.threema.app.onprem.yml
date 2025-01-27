@@ -648,15 +648,14 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_01_13.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
-          - export RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo
+          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - rustup target add x86_64-linux-android
-          - rustup target add i686-linux-android
-          - rustup target add armv7-linux-androideabi
-          - rustup target add aarch64-linux-android
+          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
+          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-arm64-v8a-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs:
+          - /rust
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -668,10 +667,13 @@ versions:
             version: '12.0'
             url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
             sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
-          extra_packages: []
-          image: debian:bookworm-slim
+          extra_packages:
+            - build-essential
+            - protobuf-compiler
+            - python3
+          image: ubuntu:noble
           jdk: openjdk-17-jdk-headless
-          ndk:
+          ndk: 25.2.9519653
           platform:
           platform_tools:
           tools:
@@ -680,15 +682,14 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_01_13.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27armeabi-v7a\x27/' -i app/build.gradle
-          - export RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo
+          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - rustup target add x86_64-linux-android
-          - rustup target add i686-linux-android
-          - rustup target add armv7-linux-androideabi
-          - rustup target add aarch64-linux-android
+          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
+          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs:
+          - /rust
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -700,10 +701,13 @@ versions:
             version: '12.0'
             url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
             sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
-          extra_packages: []
-          image: debian:bookworm-slim
+          extra_packages:
+            - build-essential
+            - protobuf-compiler
+            - python3
+          image: ubuntu:noble
           jdk: openjdk-17-jdk-headless
-          ndk:
+          ndk: 25.2.9519653
           platform:
           platform_tools:
           tools:
@@ -712,15 +716,14 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_01_13.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86\x27/' -i app/build.gradle
-          - export RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo
+          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - rustup target add x86_64-linux-android
-          - rustup target add i686-linux-android
-          - rustup target add armv7-linux-androideabi
-          - rustup target add aarch64-linux-android
+          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
+          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-x86-release-unsigned.apk /outputs/unsigned.apk
+        build_dirs:
+          - /rust
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -732,10 +735,13 @@ versions:
             version: '12.0'
             url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
             sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
-          extra_packages: []
-          image: debian:bookworm-slim
+          extra_packages:
+            - build-essential
+            - protobuf-compiler
+            - python3
+          image: ubuntu:noble
           jdk: openjdk-17-jdk-headless
-          ndk:
+          ndk: 25.2.9519653
           platform:
           platform_tools:
           tools:
@@ -744,15 +750,15 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_01_13.zip
         build:
           - sed -r '/abi \{/,/}/ s/include .*/include \x27x86_64\x27/' -i app/build.gradle
-          - export RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo
+          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - rustup target add x86_64-linux-android
-          - rustup target add i686-linux-android
-          - rustup target add armv7-linux-androideabi
-          - rustup target add aarch64-linux-android
+          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
+          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
-          - mv app/build/outputs/apk/onprem/release/app-onprem-x86_64-release-unsigned.apk /outputs/unsigned.apk
+          - mv app/build/outputs/apk/onprem/release/app-onprem-x86_64-release-ubuild_dirs:
+          - /rust
+        build_dirs:
+          - /rust
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -764,10 +770,13 @@ versions:
             version: '12.0'
             url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
             sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
-          extra_packages: []
-          image: debian:bookworm-slim
+          extra_packages:
+            - build-essential
+            - protobuf-compiler
+            - python3
+          image: ubuntu:noble
           jdk: openjdk-17-jdk-headless
-          ndk:
+          ndk: 25.2.9519653
           platform:
           platform_tools:
           tools:
@@ -776,15 +785,14 @@ versions:
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_01_13.zip
         build:
           - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
-          - export RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo
+          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - rustup target add x86_64-linux-android
-          - rustup target add i686-linux-android
-          - rustup target add armv7-linux-androideabi
-          - rustup target add aarch64-linux-android
+          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
+          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean assembleOnpremRelease
-          - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk
+          - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk- export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
+        build_dirs:
+          - /rust
         build_home_dir: /build
         build_repo_dir: /build/repo
         build_user: build
@@ -796,10 +804,13 @@ versions:
             version: '12.0'
             url: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
             sha256: 2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258
-          extra_packages: []
-          image: debian:bookworm-slim
+          extra_packages:
+            - build-essential
+            - protobuf-compiler
+            - python3
+          image: ubuntu:noble
           jdk: openjdk-17-jdk-headless
-          ndk:
+          ndk: 25.2.9519653
           platform:
           platform_tools:
           tools:
