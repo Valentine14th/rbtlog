@@ -77,6 +77,11 @@ def update_log(backend: str, *recipes: str, batch: Optional[int] = None,
         log_file = os.path.join("logs", f"{appid}.json")
         log = load_log(log_file, appid)
         old_tags = set(log["tags"])
+        old_tags = {
+                tag
+                for tag, apks in log["tags"].items()
+                if all(apk["reproducible"] is not None for apk in apks) 
+            }
         new_tags = recipe_tags(recipe_file)
         to_build = []
         for tag in new_tags:
