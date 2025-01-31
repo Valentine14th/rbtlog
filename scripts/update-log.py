@@ -89,7 +89,7 @@ def update_log(backend: str, *recipes: str, batch: Optional[int] = None,
         to_build = []
         for tag in new_tags:
             if tag not in old_tags:
-                to_build.append(f"{appid}:{tag}:b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f")
+                to_build.append(f"{appid}:{tag}:b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f:")
                 built += 1
                 if built == batch:
                     break
