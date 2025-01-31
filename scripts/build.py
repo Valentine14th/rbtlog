@@ -452,7 +452,7 @@ def build(backend: str, *specs: str, keep_apks: Optional[str] = None,
             print(f"Building {spec!r}...", file=sys.stderr)
         commit: Optional[str]
         apk_url: Optional[str]
-        if local and spec.count(":") > 1:
+        if spec.count(":") > 1:
             appid, tag, commit, apk_url = spec.split(":", 3)
             commit, apk_url = commit or None, apk_url or None
         else:
