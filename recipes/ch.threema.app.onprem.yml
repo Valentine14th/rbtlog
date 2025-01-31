@@ -800,7 +800,7 @@ versions:
           - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
           - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean assembleOnpremRelease
-          - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk- export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
+          - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk
         build_dirs:
           - /rust
         build_home_dir: /build
@@ -978,7 +978,7 @@ versions:
           - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
           - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
           - ./gradlew clean assembleOnpremRelease
-          - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk- export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
+          - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk
         build_dirs:
           - /rust
         build_home_dir: /build
