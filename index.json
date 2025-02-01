@@ -804,7 +804,7 @@
       "version_name": "5.7.0l",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738304980,
+      "timestamp": 1738391256,
       "reproducible": false,
       "error": null
     }
@@ -1206,7 +1206,7 @@
       "version_name": "5.7.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738305808,
+      "timestamp": 1738392086,
       "reproducible": true,
       "error": null
     }
@@ -1244,7 +1244,7 @@
       "version_name": "5.7.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738306641,
+      "timestamp": 1738392884,
       "reproducible": true,
       "error": null
     }
@@ -1282,7 +1282,7 @@
       "version_name": "5.7.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738307558,
+      "timestamp": 1738393885,
       "reproducible": true,
       "error": null
     }
@@ -1320,9 +1320,9 @@
       "version_name": "5.7.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738308484,
+      "timestamp": 1738394728,
       "reproducible": null,
-      "error": "subprocess failed: Command '('podman', 'run', '--rm', '--volume', '/tmp/tmp99kay0x3/outputs:/outputs', '--volume', '/tmp/tmp99kay0x3/scripts:/scripts:ro', '--env', 'ANDROID_HOME=/opt/sdk', '--env', 'APP_REPOSITORY=https://github.com/threema-ch/threema-android.git', '--env', 'APP_TAG=:commit:', '--env', 'APP_COMMIT=b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f', '--env', 'BUILD_USER=build', '--env', 'BUILD_HOME_DIR=/build', '--env', 'BUILD_REPO_DIR=/build/repo', '--env', 'BUILD_DIRS=/rust', '--env', 'PROVISIONING_BUILD_TOOLS=', '--env', 'PROVISIONING_CMAKE=', '--env', 'PROVISIONING_CMDLINE_TOOLS_VERSION=12.0', '--env', 'PROVISIONING_CMDLINE_TOOLS_URL=https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip', '--env', 'PROVISIONING_CMDLINE_TOOLS_SHA256=2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258', '--env', 'PROVISIONING_EXTRA_PACKAGES=build-essential,protobuf-compiler,python3', '--env', 'PROVISIONING_JDK=openjdk-17-jdk-headless', '--env', 'PROVISIONING_NDK=25.2.9519653', '--env', 'PROVISIONING_PLATFORM=', '--env', 'PROVISIONING_PLATFORM_TOOLS=', '--env', 'PROVISIONING_TOOLS=', '--env', 'VERIFY_GIT=yes', '--env', 'VERIFY_GRADLE_WRAPPER=yes', '--env', 'WINDOWS_LIKE=no', '--', 'ubuntu:noble', 'bash', '-c', 'timeout 10m /scripts/provision-root.sh && cd /build && timeout 10m su build /scripts/provision.sh && cd /build/repo && timeout 20m su build /scripts/build.sh')' returned non-zero exit status 1."
+      "error": "subprocess failed: Command '('podman', 'run', '--rm', '--volume', '/tmp/tmp1vjzg366/outputs:/outputs', '--volume', '/tmp/tmp1vjzg366/scripts:/scripts:ro', '--env', 'ANDROID_HOME=/opt/sdk', '--env', 'APP_REPOSITORY=https://github.com/threema-ch/threema-android.git', '--env', 'APP_TAG=:commit:', '--env', 'APP_COMMIT=b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f', '--env', 'BUILD_USER=build', '--env', 'BUILD_HOME_DIR=/build', '--env', 'BUILD_REPO_DIR=/build/repo', '--env', 'BUILD_DIRS=/rust', '--env', 'PROVISIONING_BUILD_TOOLS=', '--env', 'PROVISIONING_CMAKE=', '--env', 'PROVISIONING_CMDLINE_TOOLS_VERSION=12.0', '--env', 'PROVISIONING_CMDLINE_TOOLS_URL=https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip', '--env', 'PROVISIONING_CMDLINE_TOOLS_SHA256=2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258', '--env', 'PROVISIONING_EXTRA_PACKAGES=build-essential,protobuf-compiler,python3', '--env', 'PROVISIONING_JDK=openjdk-17-jdk-headless', '--env', 'PROVISIONING_NDK=25.2.9519653', '--env', 'PROVISIONING_PLATFORM=', '--env', 'PROVISIONING_PLATFORM_TOOLS=', '--env', 'PROVISIONING_TOOLS=', '--env', 'VERIFY_GIT=yes', '--env', 'VERIFY_GRADLE_WRAPPER=yes', '--env', 'WINDOWS_LIKE=no', '--', 'ubuntu:noble', 'bash', '-c', 'timeout 10m /scripts/provision-root.sh && cd /build && timeout 10m su build /scripts/provision.sh && cd /build/repo && timeout 20m su build /scripts/build.sh')' returned non-zero exit status 1."
     }
   ],
   "78fcc803f54ef3ec5ddc5c4f7d1b1386fafe8021c97b83bebda3f2fe11b4ecd1": [
@@ -1358,7 +1358,7 @@
       "version_name": "5.7.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738309327,
+      "timestamp": 1738395580,
       "reproducible": true,
       "error": null
     }
@@ -1384,7 +1384,7 @@
       "version_name": "5.8.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738310166,
+      "timestamp": 1738396393,
       "reproducible": false,
       "error": null
     }
@@ -1410,7 +1410,7 @@
       "version_name": "5.8.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738310978,
+      "timestamp": 1738397218,
       "reproducible": false,
       "error": null
     }
@@ -1436,7 +1436,7 @@
       "version_name": "5.8.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738311893,
+      "timestamp": 1738398074,
       "reproducible": false,
       "error": null
     }
@@ -1462,9 +1462,9 @@
       "version_name": "5.8.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738312675,
+      "timestamp": 1738398869,
       "reproducible": null,
-      "error": "subprocess failed: Command '('podman', 'run', '--rm', '--volume', '/tmp/tmp3m49xx4x/outputs:/outputs', '--volume', '/tmp/tmp3m49xx4x/scripts:/scripts:ro', '--env', 'ANDROID_HOME=/opt/sdk', '--env', 'APP_REPOSITORY=https://github.com/threema-ch/threema-android.git', '--env', 'APP_TAG=:commit:', '--env', 'APP_COMMIT=b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f', '--env', 'BUILD_USER=build', '--env', 'BUILD_HOME_DIR=/build', '--env', 'BUILD_REPO_DIR=/build/repo', '--env', 'BUILD_DIRS=/rust', '--env', 'PROVISIONING_BUILD_TOOLS=', '--env', 'PROVISIONING_CMAKE=', '--env', 'PROVISIONING_CMDLINE_TOOLS_VERSION=12.0', '--env', 'PROVISIONING_CMDLINE_TOOLS_URL=https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip', '--env', 'PROVISIONING_CMDLINE_TOOLS_SHA256=2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258', '--env', 'PROVISIONING_EXTRA_PACKAGES=build-essential,protobuf-compiler,python3', '--env', 'PROVISIONING_JDK=openjdk-17-jdk-headless', '--env', 'PROVISIONING_NDK=25.2.9519653', '--env', 'PROVISIONING_PLATFORM=', '--env', 'PROVISIONING_PLATFORM_TOOLS=', '--env', 'PROVISIONING_TOOLS=', '--env', 'VERIFY_GIT=yes', '--env', 'VERIFY_GRADLE_WRAPPER=yes', '--env', 'WINDOWS_LIKE=no', '--', 'ubuntu:noble', 'bash', '-c', 'timeout 10m /scripts/provision-root.sh && cd /build && timeout 10m su build /scripts/provision.sh && cd /build/repo && timeout 20m su build /scripts/build.sh')' returned non-zero exit status 1."
+      "error": "subprocess failed: Command '('podman', 'run', '--rm', '--volume', '/tmp/tmph970gdtv/outputs:/outputs', '--volume', '/tmp/tmph970gdtv/scripts:/scripts:ro', '--env', 'ANDROID_HOME=/opt/sdk', '--env', 'APP_REPOSITORY=https://github.com/threema-ch/threema-android.git', '--env', 'APP_TAG=:commit:', '--env', 'APP_COMMIT=b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f', '--env', 'BUILD_USER=build', '--env', 'BUILD_HOME_DIR=/build', '--env', 'BUILD_REPO_DIR=/build/repo', '--env', 'BUILD_DIRS=/rust', '--env', 'PROVISIONING_BUILD_TOOLS=', '--env', 'PROVISIONING_CMAKE=', '--env', 'PROVISIONING_CMDLINE_TOOLS_VERSION=12.0', '--env', 'PROVISIONING_CMDLINE_TOOLS_URL=https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip', '--env', 'PROVISIONING_CMDLINE_TOOLS_SHA256=2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258', '--env', 'PROVISIONING_EXTRA_PACKAGES=build-essential,protobuf-compiler,python3', '--env', 'PROVISIONING_JDK=openjdk-17-jdk-headless', '--env', 'PROVISIONING_NDK=25.2.9519653', '--env', 'PROVISIONING_PLATFORM=', '--env', 'PROVISIONING_PLATFORM_TOOLS=', '--env', 'PROVISIONING_TOOLS=', '--env', 'VERIFY_GIT=yes', '--env', 'VERIFY_GRADLE_WRAPPER=yes', '--env', 'WINDOWS_LIKE=no', '--', 'ubuntu:noble', 'bash', '-c', 'timeout 10m /scripts/provision-root.sh && cd /build && timeout 10m su build /scripts/provision.sh && cd /build/repo && timeout 20m su build /scripts/build.sh')' returned non-zero exit status 1."
     }
   ],
   "c4ebc239fa93c92d7da83fb61d9960f79b5a3bde4446e7e3844e2ff14d222dfc": [
@@ -1488,7 +1488,7 @@
       "version_name": "5.8.0o",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738313456,
+      "timestamp": 1738399716,
       "reproducible": false,
       "error": null
     }
@@ -1876,7 +1876,7 @@
       "version_name": "5.7.0k",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738314267,
+      "timestamp": 1738400546,
       "reproducible": true,
       "error": null
     }
@@ -1914,7 +1914,7 @@
       "version_name": "5.7.0k",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738315106,
+      "timestamp": 1738401401,
       "reproducible": true,
       "error": null
     }
@@ -1952,7 +1952,7 @@
       "version_name": "5.7.0k",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738315919,
+      "timestamp": 1738402337,
       "reproducible": true,
       "error": null
     }
@@ -1990,7 +1990,7 @@
       "version_name": "5.7.0k",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738316720,
+      "timestamp": 1738403210,
       "reproducible": true,
       "error": null
     }
@@ -2028,7 +2028,7 @@
       "version_name": "5.7.0k",
       "tag": ":commit:",
       "commit": "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f",
-      "timestamp": 1738317521,
+      "timestamp": 1738404046,
       "reproducible": true,
       "error": null
     }
