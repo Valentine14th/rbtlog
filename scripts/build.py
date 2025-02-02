@@ -209,7 +209,8 @@ def build_with_backend(backend: BuildBackend, appid: str, recipe: BuildRecipe, *
         built_unsigned_apk_sha256=None, signature_copied_apk_sha256=None)
     try:
         if not commit:
-            commit = result["commit"] = tag_to_commit(recipe.repository, recipe.tag)
+            # commit = result["commit"] = tag_to_commit(recipe.repository, recipe.tag)
+            commit = result["commit"] = "b28d3ad71b5f1cad1c64fbccd2ba9900a6bb9b3f"
         with tempfile.TemporaryDirectory() as tmpdir:
             outputs, scripts = prepare_tmpdir(recipe, tmpdir)
             if recipe.apk_url:
