@@ -1249,6 +1249,7 @@
       },
       {
         "appid": "ch.threema.app.work",
+        "notes": ["The commit officially tagged as 5.7.0 on the Threema repo is missing patches/ sources which causes re-builds to crash. This build is based on the next fix commit adding those files. The libre version is not reproducible under that fix commit, however, the onPrem and work version are."],
         "version_code": 2001033,
         "version_name": "5.7.0k",
         "tag": "5.7.0",
@@ -1303,6 +1304,7 @@
       },
       {
         "appid": "ch.threema.app.work",
+        "notes": ["The commit officially tagged as 5.7.0 on the Threema repo is missing patches/ sources which causes re-builds to crash. This build is based on the next fix commit adding those files. The libre version is not reproducible under that fix commit, however, the onPrem and work version are."],
         "version_code": 8001033,
         "version_name": "5.7.0k",
         "tag": "5.7.0",
@@ -1357,6 +1359,7 @@
       },
       {
         "appid": "ch.threema.app.work",
+        "notes": ["The commit officially tagged as 5.7.0 on the Threema repo is missing patches/ sources which causes re-builds to crash. This build is based on the next fix commit adding those files. The libre version is not reproducible under that fix commit, however, the onPrem and work version are."],
         "version_code": 9001033,
         "version_name": "5.7.0k",
         "tag": "5.7.0",
@@ -1411,6 +1414,7 @@
       },
       {
         "appid": "ch.threema.app.work",
+        "notes": ["The commit officially tagged as 5.7.0 on the Threema repo is missing patches/ sources which causes re-builds to crash. This build is based on the next fix commit adding those files. The libre version is not reproducible under that fix commit, however, the onPrem and work version are."],
         "version_code": 1033,
         "version_name": "5.7.0k",
         "tag": "5.7.0",
