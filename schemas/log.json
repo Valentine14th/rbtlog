@@ -9,6 +9,13 @@
       "description": "APK appid",
       "type": "string"
     },
+    "notes": {
+      "description": "notes (not required)",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "tags": {
       "type": "object",
       "additionalProperties": {
@@ -19,6 +26,13 @@
             "appid": {
               "description": "APK appid",
               "type": "string"
+            },
+            "notes": {
+              "description": "notes (not required)",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "version_code": {
               "description": "APK version code",
