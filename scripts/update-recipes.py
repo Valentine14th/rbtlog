@@ -11,6 +11,7 @@ import subprocess
 import sys
 import tempfile
 import urllib.parse
+from datetime import datetime, timedelta
 
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -143,6 +144,59 @@ def latest_tag(repository: str, tag_pattern: str, *, quiet: bool = False,
     raise Error(f"Could not find a tag matching pattern {tag_pattern}")
 
 
+def find_apk_url(recipe: Dict[Any, Any], tag: str) -> Optional[str] :
+    """Given previous urls, try to find new download links for the APK.
+    Assumes (for now) the apk_url is the same for all apks for a single version"""
+    
+    # get the last url
+    last_version = recipe["versions"][-1]
+    
+    # if there is a TAG value, replace it with the current tag
+    last_url = last_version["apks"][0]["apk_url"]
+    tag_pattern = recipe["updates"].split("tags:", 1)[1] if "tags:" in recipe["updates"] else None
+    last_url_with_replacements = url_with_replacements(last_url, tag, tag_pattern)
+    if check_url(last_url_with_replacements):
+        return last_url
+    
+    # if there is a date, try all dates from the last date to the current date
+    date_pattern = r'\d{4}_\d{2}_\d{2}'
+    test_match = re.search(date_pattern, last_url_with_replacements)
+
+    if test_match:
+        date_group_test = test_match.group()
+        
+        start_date = datetime.strptime(date_group_test, '%Y_%m_%d')
+        current_date = datetime.now() + timedelta(days=1) # one more day for safety
+        current_test = start_date
+        
+        while current_test <= current_date:
+            date_url_test = last_url_with_replacements.replace(date_group_test, current_test.strftime('%Y_%m_%d'))
+            if check_url(date_url_test):
+                match = re.search(date_pattern, last_url)
+                return last_url.replace(match.group(), current_test.strftime('%Y_%m_%d'))
+            current_test += timedelta(days=1)
+            
+    return None
+
+
+def check_url(url: str) -> bool:
+    """Check if the URL is valid"""
+    try:
+        response = requests.get(url)
+        return response.status_code != 404 
+    except requests.RequestException as e:
+        return False
+ 
+def url_with_replacements(apk_url: str, tag: str, tag_pattern: Optional[str]) -> str:
+    """URL with $$TAG$$ $$TAG:1$$, $$TAG:_$$ etc. replaced."""
+    url = apk_url.replace("$$TAG$$", tag)
+    url = url.replace("$$TAG:_$$", tag.replace(".", "_"))
+    if tag_pattern and (m := re.fullmatch(tag_pattern, tag)):
+        for i, group in enumerate(m.groups("")):
+            url = url.replace(f"$$TAG:{i + 1}$$", group)
+    return url     
+
+
 # FIXME: retry, configure timeout, gitea vs forgejo
 def gitea_latest_release(host: str, namespace: str, project: str, *,
                          verbose: bool = False) -> Dict[Any, Any]:
@@ -239,8 +293,8 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
         if checkonly := updates.startswith("checkonly:"):
             updates = updates.replace("checkonly:", "", 1)
         try:
+            apk_patterns = [apk["apk_pattern"] for apk in recipe["versions"][-1]["apks"]]
             if updates == "releases":
-                apk_patterns = [apk["apk_pattern"] for apk in recipe["versions"][-1]["apks"]]
                 tag, apk_urls = latest_release(repository, apk_patterns, verbose=verbose)
                 if verbose:
                     for apk_url in apk_urls.values():
@@ -248,7 +302,13 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
             elif updates.startswith("tags:"):
                 tag_pattern = updates.replace("tags:", "", 1)
                 tag = latest_tag(repository, tag_pattern, quiet=quiet, verbose=verbose)
-                apk_urls = None
+                found_url = find_apk_url(recipe, tag)
+                apk_urls = {} if found_url else None
+                if apk_urls != None:
+                    for apk_pattern in apk_patterns:
+                        apk_urls[apk_pattern] = found_url
+                    if verbose:
+                        print(f"Found tag {tag!r} with APK URL {found_url!r}.", file=sys.stderr)
                 if verbose:
                     print(f"Found tag {tag!r}.", file=sys.stderr)
             else:
@@ -256,6 +316,8 @@ def update_recipes(*recipes: str, continue_on_errors: bool = False, always_updat
             if append_latest_version(recipe, tag, apk_urls):
                 if checkonly:
                     print(f"Update available for {appid!r}: {tag!r}.", file=sys.stderr)
+                elif apk_urls is None:
+                    print(f"Could not find APK URLs for {appid!r}: {tag!r}.", file=sys.stderr)
                 else:
                     save_recipe(recipe_file, recipe)
                     print(f"Updated {appid!r} to {tag!r}.", file=sys.stderr)
