@@ -60,6 +60,13 @@
               ],
               "pattern": "^[0-9a-f]{40}$"
             },
+            "builder": {
+              "description": "The GitHub user who built the APK",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
             "recipe": {
               "type": "object",
               "properties": {
@@ -310,6 +317,7 @@
             "version_name",
             "tag",
             "commit",
+            "builder",
             "recipe",
             "timestamp",
             "reproducible",
