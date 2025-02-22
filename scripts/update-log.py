@@ -41,14 +41,22 @@ def save_log(log_file: str, data: Dict[Any, Any]) -> None:
 
 
 # FIXME
-def add_builds(log_data: Dict[Any, Any], builds: List[Dict[Any, Any]]) -> Dict[Any, Any]:
+def add_builds(log_data: Dict[Any, Any], builds: List[Dict[Any, Any]], verbose: bool) -> Dict[Any, Any]:
     """Add builds to log; modifies in-place!"""
     for build in builds:
         tag, version_code = build["tag"], build["version_code"]
         sha256 = build["upstream_signed_apk_sha256"]
         if tag not in log_data["tags"]:
             log_data["tags"][tag] = []
-        log_data["tags"][tag].append(build)
+        build_index = next((i for i, apk in enumerate(log_data["tags"][tag]) if apk["version_code"] == version_code), None)
+        if build_index is not None:
+            log_data["tags"][tag][build_index] = build
+            if verbose:
+                print(f"Updated {tag}:{version_code} in log.", file=sys.stderr)
+        else:
+            log_data["tags"][tag].append(build)
+            if verbose:
+                print(f"Added {tag}:{version_code} in log.", file=sys.stderr)
         if version_code is not None:
             vc = str(version_code)
             if vc not in log_data["version_codes"]:
@@ -96,7 +104,7 @@ def update_log(backend: str, *recipes: str, batch: Optional[int] = None,
         args = (EXE, os.path.join("scripts", "build.py"), *verb, *keep, "--", backend, *to_build)
         output = subprocess.run(args, check=True, stdout=subprocess.PIPE).stdout.decode()
         builds = json.loads(output)
-        save_log(log_file, add_builds(load_log(log_file, appid), builds))
+        save_log(log_file, add_builds(load_log(log_file, appid), builds, verbose))
     if verbose:
         info = f" (batch of {batch})" if batch else ""
         print(f"Tags built: {built}{info}.", file=sys.stderr)
