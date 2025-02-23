@@ -264,7 +264,7 @@ def append_latest_version(recipe: Dict[Any, Any], tag: str,
         return False
     latest_version = copy.deepcopy(recipe["versions"][-1])
     latest_version["tag"] = tag
-    if latest_version["notes"]:
+    if "notes" in latest_version:
         del latest_version["notes"]
     if apk_urls:
         for apk in latest_version["apks"]:
