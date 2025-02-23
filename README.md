@@ -590,7 +590,7 @@ The `updates:` specification can be `releases`, `tags:` followed by a regex
 (e.g. `tags:([\d.]+)`), `manual`, `disabled`, or `checkonly:` followed by
 `releases` or `tags:...` (to check but not update).
 
-For `tags:` You can use not only the full matched tag (`$$TAG$$`) but also any
+For `tags:` You can use not only the full matched tag (`$$TAG$$`), or full matched tag with dots replaced by underscores (`$$TAG:_$$`), but also any
 capturing group (`$$TAG:1$$` for the first group) as a placeholder in `apk_url`.
 
 For releases with multiple per-ABI APKs, use multiple build recipes under
