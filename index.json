@@ -1315,6 +1315,76 @@
       "error": null
     }
   ],
+  "cfd424a139a6b42809a0371f105a1a3865c92842c80b0e9c7dd3e29503d23576": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-onprem-5_8_1o-2025_02_24.zip",
+      "appid": "ch.threema.app.onprem",
+      "version_code": 3001050,
+      "version_name": "5.8.1o",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740724227,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "2640c247270c43e20f83c5e721fe59d35811bf25f163aad6b40314914715160d": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-onprem-5_8_1o-2025_02_24.zip",
+      "appid": "ch.threema.app.onprem",
+      "version_code": 2001050,
+      "version_name": "5.8.1o",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740725027,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "2b64ffbb7dc76da3ed9336fab59af16189b3af38480bb190998fc8b3012989c8": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-onprem-5_8_1o-2025_02_24.zip",
+      "appid": "ch.threema.app.onprem",
+      "version_code": 8001050,
+      "version_name": "5.8.1o",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740725832,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "cb8c4b6505fc918382c0a03c8fdf5aefdbae04eaa4f35042f851b44304494cee": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-onprem-5_8_1o-2025_02_24.zip",
+      "appid": "ch.threema.app.onprem",
+      "version_code": 9001050,
+      "version_name": "5.8.1o",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740726620,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "f9dc251ba90e94af028c74957ca9ae5eb109e8ba09e70a4d5c1d898593e7b5e6": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-onprem-5_8_1o-2025_02_24.zip",
+      "appid": "ch.threema.app.onprem",
+      "version_code": 1050,
+      "version_name": "5.8.1o",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740727424,
+      "reproducible": true,
+      "error": null
+    }
+  ],
   "fa7aab6bb8a50e4692e23b0ee3859c7a6a7100690127bcb257d63e9fbea0888d": [
     {
       "repository": "https://github.com/threema-ch/threema-android.git",
@@ -1801,6 +1871,76 @@
       "tag": "5.8.0",
       "commit": "2f562c020bd88de27ffdad4bcc86a9609c1ce457",
       "timestamp": 1738271662,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "e539411e41474309eb9371638befec72fc296e80be16b3ae2f39ca27df7c1d97": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-work-5_8_1k-2025_02_24.zip",
+      "appid": "ch.threema.app.work",
+      "version_code": 3001050,
+      "version_name": "5.8.1k",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740728220,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "c7e9b56fca6cb3f6988aaa544ec043365e8a4df4ca8d1a3b527e685793b76905": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-work-5_8_1k-2025_02_24.zip",
+      "appid": "ch.threema.app.work",
+      "version_code": 2001050,
+      "version_name": "5.8.1k",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740728990,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "a54b712238518e1d4325f464e53775d59c3d6f96b71e571eee3f3cc6004cf7ef": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-work-5_8_1k-2025_02_24.zip",
+      "appid": "ch.threema.app.work",
+      "version_code": 8001050,
+      "version_name": "5.8.1k",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740729778,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "f5dd583af42987c60629e23f05b4eb083a36135f6857bc9f83aa5f5a31e18b9c": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-work-5_8_1k-2025_02_24.zip",
+      "appid": "ch.threema.app.work",
+      "version_code": 9001050,
+      "version_name": "5.8.1k",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740730652,
+      "reproducible": true,
+      "error": null
+    }
+  ],
+  "14b6d68c3539c289fb2118ef840b8cf4c42d7842fca24732a64fe0614e3a60cc": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://work.threema.ch/apk/threema-work-5_8_1k-2025_02_24.zip",
+      "appid": "ch.threema.app.work",
+      "version_code": 1050,
+      "version_name": "5.8.1k",
+      "tag": "5.8.1",
+      "commit": "d48d5825e6749ac615b122dbe75651a8b8d28320",
+      "timestamp": 1740731475,
       "reproducible": true,
       "error": null
     }
