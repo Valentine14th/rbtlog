@@ -626,6 +626,62 @@
         "built_unsigned_apk_sha256": "7d9a8575a32c83480379d3a3f3730a26ded84f2bed7b5d93458e5095df975590",
         "signature_copied_apk_sha256": "627f30e27f32a48e1fde2fb6c9eb4edd9dc9f49801925c5fbdcc483a70dba12d"
       }
+    ],
+    "6.0.0": [
+      {
+        "appid": "ch.threema.app.libre",
+        "version_code": 1070,
+        "version_name": "6.0.0l",
+        "tag": "6.0.0",
+        "commit": "1e19eae24643a80ecb3a03a67e6e6ffb70168a0c",
+        "recipe": {
+          "repository": "https://github.com/threema-ch/threema-android.git",
+          "tag": "6.0.0",
+          "apk_pattern": "ch\\.threema\\.app\\.libre-([\\d.]+)l\\.apk",
+          "apk_url": "https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-6.0.0l.apk",
+          "build": "sed -r '/abi \\{/,/}/ s/enable true/enable false/' -i app/build.gradle\nexport RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo\n./scripts/rustup-init.sh -y --default-toolchain 1.80\nexport PATH=\"$CARGO_HOME/bin:$PATH\"\nrustup target add x86_64-linux-android\nrustup target add i686-linux-android\nrustup target add armv7-linux-androideabi\nrustup target add aarch64-linux-android\n./gradlew assembleLibreRelease\nmv app/build/outputs/apk/libre/release/app-libre-release-unsigned.apk /outputs/unsigned.apk\n",
+          "build_cpus": null,
+          "build_dirs": [
+            "/rust"
+          ],
+          "build_home_dir": "/build",
+          "build_repo_dir": "/build/repo",
+          "build_timeout": null,
+          "build_user": "build",
+          "provisioning": {
+            "android_home": "/opt/sdk",
+            "build_tools": null,
+            "cmake": null,
+            "cmdline_tools": {
+              "version": "12.0",
+              "url": "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip",
+              "sha256": "2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258"
+            },
+            "extra_packages": [
+              "build-essential",
+              "protobuf-compiler",
+              "python3"
+            ],
+            "image": "ubuntu:noble",
+            "jdk": "openjdk-17-jdk-headless",
+            "ndk": "25.2.9519653",
+            "platform": null,
+            "platform_tools": null,
+            "tools": null,
+            "verify_git": true,
+            "verify_gradle_wrapper": true,
+            "windows_like": false
+          }
+        },
+        "timestamp": 1748500507,
+        "cpu_count": 4,
+        "reproducible": null,
+        "error": "subprocess failed: Command '('podman', 'run', '--rm', '--volume', '/tmp/tmp4_ydyct1/outputs:/outputs', '--volume', '/tmp/tmp4_ydyct1/scripts:/scripts:ro', '--env', 'ANDROID_HOME=/opt/sdk', '--env', 'APP_REPOSITORY=https://github.com/threema-ch/threema-android.git', '--env', 'APP_TAG=6.0.0', '--env', 'APP_COMMIT=1e19eae24643a80ecb3a03a67e6e6ffb70168a0c', '--env', 'BUILD_USER=build', '--env', 'BUILD_HOME_DIR=/build', '--env', 'BUILD_REPO_DIR=/build/repo', '--env', 'BUILD_DIRS=/rust', '--env', 'PROVISIONING_BUILD_TOOLS=', '--env', 'PROVISIONING_CMAKE=', '--env', 'PROVISIONING_CMDLINE_TOOLS_VERSION=12.0', '--env', 'PROVISIONING_CMDLINE_TOOLS_URL=https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip', '--env', 'PROVISIONING_CMDLINE_TOOLS_SHA256=2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258', '--env', 'PROVISIONING_EXTRA_PACKAGES=build-essential,protobuf-compiler,python3', '--env', 'PROVISIONING_JDK=openjdk-17-jdk-headless', '--env', 'PROVISIONING_NDK=25.2.9519653', '--env', 'PROVISIONING_PLATFORM=', '--env', 'PROVISIONING_PLATFORM_TOOLS=', '--env', 'PROVISIONING_TOOLS=', '--env', 'VERIFY_GIT=yes', '--env', 'VERIFY_GRADLE_WRAPPER=yes', '--env', 'WINDOWS_LIKE=no', '--', 'ubuntu:noble', 'bash', '-c', 'timeout 10m /scripts/provision-root.sh && cd /build && timeout 10m su build /scripts/provision.sh && cd /build/repo && timeout 20m su build /scripts/build.sh')' returned non-zero exit status 100.",
+        "build_log": "RUN COMMAND podman pull -- ubuntu:noble\nResolved \"ubuntu\" as an alias (/etc/containers/registries.conf.d/shortnames.conf)\nTrying to pull docker.io/library/ubuntu:noble...\nGetting image source signatures\nCopying blob sha256:0622fac788edde5d30e7bbd2688893e5452a19ff237a2e4615e2d8181321cb4e\nCopying blob sha256:0622fac788edde5d30e7bbd2688893e5452a19ff237a2e4615e2d8181321cb4e\nCopying config sha256:a0e45e2ce6e6e22e73185397d162a64fcf2f80a41c597015cab05d9a7b5913ce\nWriting manifest to image destination\nStoring signatures\na0e45e2ce6e6e22e73185397d162a64fcf2f80a41c597015cab05d9a7b5913ce\nRUN COMMAND podman run --rm --volume /tmp/tmp4_ydyct1/outputs:/outputs --volume /tmp/tmp4_ydyct1/scripts:/scripts:ro --env ANDROID_HOME=/opt/sdk --env APP_REPOSITORY=https://github.com/threema-ch/threema-android.git --env APP_TAG=6.0.0 --env APP_COMMIT=1e19eae24643a80ecb3a03a67e6e6ffb70168a0c --env BUILD_USER=build --env BUILD_HOME_DIR=/build --env BUILD_REPO_DIR=/build/repo --env BUILD_DIRS=/rust --env PROVISIONING_BUILD_TOOLS= --env PROVISIONING_CMAKE= --env PROVISIONING_CMDLINE_TOOLS_VERSION=12.0 --env PROVISIONING_CMDLINE_TOOLS_URL=https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip --env PROVISIONING_CMDLINE_TOOLS_SHA256=2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258 --env PROVISIONING_EXTRA_PACKAGES=build-essential,protobuf-compiler,python3 --env PROVISIONING_JDK=openjdk-17-jdk-headless --env PROVISIONING_NDK=25.2.9519653 --env PROVISIONING_PLATFORM= --env PROVISIONING_PLATFORM_TOOLS= --env PROVISIONING_TOOLS= --env VERIFY_GIT=yes --env VERIFY_GRADLE_WRAPPER=yes --env WINDOWS_LIKE=no -- ubuntu:noble bash -c timeout 10m /scripts/provision-root.sh && cd /build && timeout 10m su build /scripts/provision.sh && cd /build/repo && timeout 20m su build /scripts/build.sh\n+ '[' -e /etc/apt ']'\n+ export DEBIAN_FRONTEND=noninteractive\n+ DEBIAN_FRONTEND=noninteractive\n+ '[' -n '' ']'\n+ '[' -n '' ']'\n+ apt-get update\nIgn:1 http://archive.ubuntu.com/ubuntu noble InRelease\nIgn:2 http://archive.ubuntu.com/ubuntu noble-updates InRelease\nIgn:3 http://archive.ubuntu.com/ubuntu noble-backports InRelease\nIgn:1 http://archive.ubuntu.com/ubuntu noble InRelease\nIgn:2 http://archive.ubuntu.com/ubuntu noble-updates InRelease\nIgn:3 http://archive.ubuntu.com/ubuntu noble-backports InRelease\nIgn:1 http://archive.ubuntu.com/ubuntu noble InRelease\nIgn:2 http://archive.ubuntu.com/ubuntu noble-updates InRelease\nIgn:3 http://archive.ubuntu.com/ubuntu noble-backports InRelease\nErr:1 http://archive.ubuntu.com/ubuntu noble InRelease\n  Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::102). - connect (101: Network is unreachable) Could not connect to archive.ubuntu.com:80 (91.189.91.81), connection timed out Could not connect to archive.ubuntu.com:80 (185.125.190.83), connection timed out Could not connect to archive.ubuntu.com:80 (91.189.91.83), connection timed out Could not connect to archive.ubuntu.com:80 (185.125.190.81), connection timed out Could not connect to archive.ubuntu.com:80 (185.125.190.82), connection timed out Could not connect to archive.ubuntu.com:80 (91.189.91.82), connection timed out\nErr:2 http://archive.ubuntu.com/ubuntu noble-updates InRelease\n  Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::103). - connect (101: Network is unreachable)\nErr:3 http://archive.ubuntu.com/ubuntu noble-backports InRelease\n  Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::102). - connect (101: Network is unreachable)\nIgn:4 http://security.ubuntu.com/ubuntu noble-security InRelease\nIgn:4 http://security.ubuntu.com/ubuntu noble-security InRelease\nIgn:4 http://security.ubuntu.com/ubuntu noble-security InRelease\nErr:4 http://security.ubuntu.com/ubuntu noble-security InRelease\n  Connection failed [IP: 185.125.190.82 80]\nReading package lists...\nW: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/noble/InRelease  Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::102). - connect (101: Network is unreachable) Could not connect to archive.ubuntu.com:80 (91.189.91.81), connection timed out Could not connect to archive.ubuntu.com:80 (185.125.190.83), connection timed out Could not connect to archive.ubuntu.com:80 (91.189.91.83), connection timed out Could not connect to archive.ubuntu.com:80 (185.125.190.81), connection timed out Could not connect to archive.ubuntu.com:80 (185.125.190.82), connection timed out Could not connect to archive.ubuntu.com:80 (91.189.91.82), connection timed out\nW: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/noble-updates/InRelease  Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::103). - connect (101: Network is unreachable)\nW: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/noble-backports/InRelease  Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::102). - connect (101: Network is unreachable)\nW: Failed to fetch http://security.ubuntu.com/ubuntu/dists/noble-security/InRelease  Connection failed [IP: 185.125.190.82 80]\nW: Some index files failed to download. They have been ignored, or old ones used instead.\n+ apt-get upgrade -y\nReading package lists...\nBuilding dependency tree...\nReading state information...\nCalculating upgrade...\n0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.\n+ apt-get install --no-install-recommends -y adduser git wget unzip openjdk-17-jdk-headless\nReading package lists...\nBuilding dependency tree...\nReading state information...\nPackage adduser is not available, but is referred to by another package.\nThis may mean that the package is missing, has been obsoleted, or\nis only available from another source\n\nE: Package 'adduser' has no installation candidate\nE: Unable to locate package git\nE: Unable to locate package wget\nE: Unable to locate package unzip\nE: Unable to locate package openjdk-17-jdk-headless\n",
+        "upstream_signed_apk_sha256": "99de6bebb6bbcf2eca185497f5e309b0626f8cb0d97f09f5fc89fb948d039416",
+        "built_unsigned_apk_sha256": null,
+        "signature_copied_apk_sha256": null
+      }
     ]
   },
   "version_codes": {
@@ -667,6 +723,9 @@
     ],
     "1050": [
       "5.8.1"
+    ],
+    "1070": [
+      "6.0.0"
     ]
   },
   "sha256": {
@@ -708,6 +767,9 @@
     ],
     "627f30e27f32a48e1fde2fb6c9eb4edd9dc9f49801925c5fbdcc483a70dba12d": [
       "5.8.1"
+    ],
+    "99de6bebb6bbcf2eca185497f5e309b0626f8cb0d97f09f5fc89fb948d039416": [
+      "6.0.0"
     ]
   }
 }
