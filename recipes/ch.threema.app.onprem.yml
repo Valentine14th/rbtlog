@@ -1183,12 +1183,7 @@ versions:
       - apk_pattern: onprem-arm64-v8a-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_04_29.zip
         build:
-          - sed -r '/abi \{/,/}/ s/include .*/include \x27arm64-v8a\x27/' -i app/build.gradle
-          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
-          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
+          - sed -r '/abi\s*\{/,/}/ s/include\(.*\)/include\(\x27arm64-v8a\x27\)/' -i app/build.gradle.kts
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-arm64-v8a-release-unsigned.apk /outputs/unsigned.apk
         build_dirs:
@@ -1218,12 +1213,7 @@ versions:
       - apk_pattern: onprem-armeabi-v7a-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_04_29.zip
         build:
-          - sed -r '/abi \{/,/}/ s/include .*/include \x27armeabi-v7a\x27/' -i app/build.gradle
-          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
-          - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
-          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
+          - sed -r '/abi\s*\{/,/}/ s/include\(.*\)/include\(\x27armeabi-v7a\x27\)/' -i app/build.gradle.kts
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-armeabi-v7a-release-unsigned.apk /outputs/unsigned.apk
         build_dirs:
@@ -1253,12 +1243,7 @@ versions:
       - apk_pattern: onprem-x86-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_04_29.zip
         build:
-          - sed -r '/abi \{/,/}/ s/include .*/include \x27x86\x27/' -i app/build.gradle
-          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
-          - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
-          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
+          - sed -r '/abi\s*\{/,/}/ s/include\(.*\)/include\(\x27x86\x27\)/' -i app/build.gradle.kts
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-x86-release-unsigned.apk /outputs/unsigned.apk
         build_dirs:
@@ -1288,12 +1273,7 @@ versions:
       - apk_pattern: onprem-x86_64-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_04_29.zip
         build:
-          - sed -r '/abi \{/,/}/ s/include .*/include \x27x86_64\x27/' -i app/build.gradle
-          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
-          - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
-          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
+          - sed -r '/abi\s*\{/,/}/ s/include\(.*\)/include\(\x27x86_64\x27\)/' -i app/build.gradle.kts
           - ./gradlew clean -PbuildUniversalApk assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-x86_64-release-unsigned.apk /outputs/unsigned.apk
         build_dirs:
@@ -1323,12 +1303,7 @@ versions:
       - apk_pattern: onprem-universal-release.apk
         apk_url: https://work.threema.ch/apk/threema-onprem-$$TAG:_$$o-2025_04_29.zip
         build:
-          - sed -r '/abi \{/,/}/ s/enable true/enable false/' -i app/build.gradle
-          - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
-          - ./scripts/rustup-init.sh -y --default-toolchain 1.80
-          - export PATH="$CARGO_HOME/bin:$PATH"
-          - TOOLCHAIN=$(grep channel domain/libthreema/rust-toolchain.toml | cut -d'"' -f2)
-          - rustup target add --toolchain $TOOLCHAIN armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
+          - sed -r '/abi \{/,/}/ s/isEnable = true/isEnable = false/' -i app/build.gradle.kts
           - ./gradlew clean assembleOnpremRelease
           - mv app/build/outputs/apk/onprem/release/app-onprem-release-unsigned.apk /outputs/unsigned.apk
         build_dirs:
