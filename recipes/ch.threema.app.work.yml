@@ -1183,7 +1183,7 @@ versions:
       - apk_pattern: work-arm64-v8a-release.apk
         apk_url: https://work.threema.ch/apk/threema-work-$$TAG:_$$k-2025_04_29.zip
         build:
-          - sed -r '/abi\s*\{/,/}/ s/include\(.*\)/include\(\x27arm64-v8a\x27\)/' -i app/build.gradle.kt
+          - sed -r '/abi\s*\{/,/}/ s/include\(.*\)/include\(\x27arm64-v8a\x27\)/' -i app/build.gradle.kts
           - export RUSTUP_HOME=/rust/rustup CARGO_HOME=/rust/cargo
           - ./scripts/rustup-init.sh -y --default-toolchain 1.80
           - export PATH="$CARGO_HOME/bin:$PATH"
