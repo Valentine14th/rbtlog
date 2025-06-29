@@ -839,6 +839,20 @@
       "error": null
     }
   ],
+  "0a952f5e0b848bf4a0c12016007e293080f423a56346c572b3e1c2bd4c2c243c": [
+    {
+      "repository": "https://github.com/threema-ch/threema-android.git",
+      "apk_url": "https://releases.threema.ch/fdroid/repo/ch.threema.app.libre-6.0.1l.apk",
+      "appid": "ch.threema.app.libre",
+      "version_code": 1074,
+      "version_name": "6.0.1l",
+      "tag": "6.0.1",
+      "commit": "f5d44f37b06d28b12251e0f1237fb0f4fd3dc8ba",
+      "timestamp": 1751199932,
+      "reproducible": true,
+      "error": null
+    }
+  ],
   "b5a92a281ade25cdeb19c465594279fa898b02e5f15f8ba794853b9b178dc70d": [
     {
       "repository": "https://github.com/threema-ch/threema-android.git",
