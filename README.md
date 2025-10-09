@@ -1,5 +1,6 @@
 <!-- SPDX-FileCopyrightText: 2024 FC (Fay) Stegerman <flx@obfusk.net> -->
 <!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<!--
 
 [![CI](https://github.com/obfusk/rbtlog/actions/workflows/ci.yml/badge.svg)](https://github.com/obfusk/rbtlog/actions/workflows/ci.yml)
 [![podman](https://github.com/obfusk/rbtlog/actions/workflows/podman.yml/badge.svg?branch=master)](https://github.com/obfusk/rbtlog/actions/workflows/podman.yml)
@@ -7,6 +8,57 @@
 [![update log](https://github.com/obfusk/rbtlog/actions/workflows/update-log.yml/badge.svg)](https://github.com/obfusk/rbtlog/actions/workflows/update-log.yml)
 [![update recipes](https://github.com/obfusk/rbtlog/actions/workflows/update-recipes.yml/badge.svg)](https://github.com/obfusk/rbtlog/actions/workflows/update-recipes.yml)
 [![AGPLv3+](https://img.shields.io/badge/license-AGPLv3+-blue.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
+
+-->
+# Watchdog: Reproducible Build Monitor
+
+**Live demo:** [Watchdog](https://watchdog-coral.vercel.app)
+
+This repository builds on the (archived) upstream *rbtlog* reproducible-build monitoring framework, fixing, adapting and extending it with a web interface and a focused proof-of-concept on the secure messaging app **Threema**.
+
+---
+
+## Overview
+
+**Watchdog** helps verify that mobile applications are truly built from their public source code — a critical step in preventing supply-chain attacks and hidden backdoors. It allows independent verifiers and everyday users to confirm software integrity.
+
+This adaptation focuses on:
+
+* **Accessibility:** Providing an **easy-to-use web interface** where non-technical users can upload an APK and check if it matches verified builds.
+* **Transparency:** Publishing verification logs and explanations for successful and failed rebuilds.
+* **Practical security impact:** Demonstrating the system on **Threema**, a secure messaging app frequently maliciously re-distributed in censorship-heavy countries, where tampered versions pose real risks.
+
+---
+
+## Proof of Concept: Threema
+
+The project demonstrates Watchdog’s capability by monitoring **Threema Libre, Work, and OnPrem** variants. These applications are particularly relevant because they are privacy-critical and a prime target for milicious distribution. Watchdog provides a reproducible, verifiable way to check if these binaries truly match the official releases.
+
+The goal is not to replace other official verification methods but to make independent, third-party validation effortless and understandable.
+
+---
+
+## Project
+
+Watchdog consolidates feasibility of automated reproducibility checks for decentralized supply chain trust, and builds on this opportunity to enable intuitive verification without technical knowledge:
+
+* Dynamic link discovery helps locate official releases.
+* Rebuild attempts are automatically run on new releases, and their process and outcomes are recorded in transparent logs. 
+* Clear UI summarizes those verification logs, and enables failures to be contextualized with notes, helping users evaluate failure impact.
+* Users with limited technical knowledge can upload an APK to verify or check rebuild logs with intuitive UX.
+
+Try it yourself: [Watchdog](https://watchdog-coral.vercel.app)
+
+---
+
+## Learn More
+
+* 🖼️ **Presentation slides:** [Watchdog slides](./watchdog_slides.pdf)
+
+The document describes on a high-level the system’s motivation, design, evaluation, and the broader vision for a decentralized, verifiable software ecosystem.
+
+
+# !! Archived upstream !!
 
 # Reproducible Builds Transparency Log (rbtlog)
 
